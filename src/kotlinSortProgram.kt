@@ -15,13 +15,23 @@ fun main(){
                 print("Input data: ")
                 for(float in floats)
                     print("$float, ")
-                println("\nDo float sort.")
+                println("\nDo floating point sort.")
             }
             else
                 println("Input data is not valid.")
         }
-        else if(type.contains('2') || type.contains("int"))
-            println("Do integer sort.")
+        else if(type.contains('2') || type.contains("int")) {
+            val input = stringInput("integer")
+            if (isValidInput("integer", input)) {
+                val ints = stringToIntegerMutableList(input)
+                print("Input data: ")
+                for(int in ints)
+                    print("$int, ")
+                println("\nDo integer sort.")
+            }
+            else
+                println("Input data is not valid.")
+        }
         else if (type.contains('3') || type.contains("char"))
             println("Do character sort.")
         else if(type.contains('4') || type.contains("str"))
@@ -40,7 +50,7 @@ fun stringInput(type: String): String{
         "string" -> println("1stString 2ndString)")
         else -> println("WRONG PARAMETER")
     }
-    print("input: ")
+    print("Input: ")
     return readLine().toString()
 }
 
@@ -59,8 +69,28 @@ fun stringToFloatMutableList(str: String): MutableList<Float>{
     val read = Scanner(str)
     val floats = mutableListOf(0f)
     floats.set(0, read.nextFloat())
-    while (read.hasNextFloat()){
+    while (read.hasNextFloat())
         floats.add(read.nextFloat())
-    }
     return floats
+}
+
+fun stringToIntegerMutableList(str: String): MutableList<Int>{
+    val read = Scanner(str)
+    val ints = mutableListOf(0)
+    ints.set(0, read.nextInt())
+    while(read.hasNextInt())
+        ints.add(read.nextInt())
+    return ints
+}
+
+fun stringToCharMutableList(str: String): MutableList<Char>{
+    val read = Scanner(str)
+    val chars = mutableListOf('0')
+    return chars
+}
+
+fun stringToStringMutableList(str: String): MutableList<String>{
+    val read = Scanner(str)
+    val strings = mutableListOf("0")
+    return strings
 }
