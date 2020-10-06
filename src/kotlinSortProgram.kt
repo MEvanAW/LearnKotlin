@@ -44,8 +44,18 @@ fun main(){
             else
                 println("Input data is not valid.")
         }
-        else if(type.contains('4') || type.contains("str"))
-            println("Do string sort.")
+        else if(type.contains('4') || type.contains("str")) {
+            val input = stringInput("string")
+            if(isValidInput("string", input)){
+                val strings = stringToStringMutableList(input)
+                print("Input data: ")
+                for(string in strings)
+                    print(string + ", ")
+                println("\nDo string sort.")
+            }
+            else
+                println("Input data is not valid.")
+        }
         else
             println("Invalid input.")
     }
@@ -69,7 +79,8 @@ fun isValidInput(type: String, input:String): Boolean{
     when (type){
         "floating point" -> if (read.hasNextFloat()) return true
         "integer" -> if(read.hasNextInt()) return true
-        "character", "string" -> if(read.hasNext(".")) return true
+        "character" -> if(read.hasNext(".")) return true
+        "string" -> if(input.isNotBlank()) return true
         else -> println("WRONG PARAMETER")
     }
     return false
@@ -78,7 +89,7 @@ fun isValidInput(type: String, input:String): Boolean{
 fun stringToFloatMutableList(str: String): MutableList<Float>{
     val read = Scanner(str)
     val floats = mutableListOf(0f)
-    floats.set(0, read.nextFloat())
+    floats[0] = read.nextFloat()
     while (read.hasNextFloat())
         floats.add(read.nextFloat())
     return floats
@@ -87,7 +98,7 @@ fun stringToFloatMutableList(str: String): MutableList<Float>{
 fun stringToIntegerMutableList(str: String): MutableList<Int>{
     val read = Scanner(str)
     val ints = mutableListOf(0)
-    ints.set(0, read.nextInt())
+    ints[0] = read.nextInt()
     while(read.hasNextInt())
         ints.add(read.nextInt())
     return ints
@@ -97,16 +108,15 @@ fun stringToCharMutableList(str: String): MutableList<Char>{
     val read = Scanner(str)
     val chars = mutableListOf('0')
     var temp = read.next(".")
-    chars.set(0, temp.get(0))
+    chars[0] = temp[0]
     while(read.hasNext(".")){
         temp = read.next(".")
-        chars.add(temp.get(0))
+        chars.add(temp[0])
     }
     return chars
 }
 
 fun stringToStringMutableList(str: String): MutableList<String>{
-    val read = Scanner(str)
-    val strings = mutableListOf("0")
-    return strings
+    val strings = str.split(" ").map{ it.trim() }
+    return strings.toMutableList()
 }
