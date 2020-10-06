@@ -32,8 +32,18 @@ fun main(){
             else
                 println("Input data is not valid.")
         }
-        else if (type.contains('3') || type.contains("char"))
-            println("Do character sort.")
+        else if (type.contains('3') || type.contains("char")) {
+            val input = stringInput("character")
+            if(isValidInput("character", input)){
+                val chars = stringToCharMutableList(input)
+                print("Input data: ")
+                for(char in chars)
+                    print("$char, ")
+                println("\nDo character sort.")
+            }
+            else
+                println("Input data is not valid.")
+        }
         else if(type.contains('4') || type.contains("str"))
             println("Do string sort.")
         else
@@ -86,6 +96,12 @@ fun stringToIntegerMutableList(str: String): MutableList<Int>{
 fun stringToCharMutableList(str: String): MutableList<Char>{
     val read = Scanner(str)
     val chars = mutableListOf('0')
+    var temp = read.next(".")
+    chars.set(0, temp.get(0))
+    while(read.hasNext(".")){
+        temp = read.next(".")
+        chars.add(temp.get(0))
+    }
     return chars
 }
 
