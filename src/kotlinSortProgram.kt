@@ -2,7 +2,7 @@
 import java.util.Scanner
 fun main(){
     println("<------------ Sort Program ----------->")
-    println("Sort types available:")
+    println("Ascending sort types available:")
     println("1. floating point,   3. character,")
     println("2. integer,          4. string")
     print("Pick type: ")
@@ -10,51 +10,63 @@ fun main(){
     if (type != null) {
         if(type.contains('1') || type.contains("float")){
             val input = stringInput("floating point")
-            if (isValidInput("floating point", input)){
-                val floats = stringToFloatMutableList(input)
-                print("Input data: ")
-                for(float in floats)
-                    print("$float, ")
-                println("\nDo floating point sort.")
-            }
-            else
+            val floats: MutableList<Float>
+            if (isValidInput("floating point", input))
+                floats = stringToFloatMutableList(input)
+            else{
                 println("Input data is not valid.")
+                return
+            }
+            floats.sort()
+            print("Sorted data: ")
+            for(float in floats)
+                print("$float, ")
+            println()
         }
         else if(type.contains('2') || type.contains("int")) {
             val input = stringInput("integer")
-            if (isValidInput("integer", input)) {
-                val ints = stringToIntegerMutableList(input)
-                print("Input data: ")
-                for(int in ints)
-                    print("$int, ")
-                println("\nDo integer sort.")
-            }
-            else
+            val ints: MutableList<Int>
+            if (isValidInput("integer", input))
+                ints = stringToIntegerMutableList(input)
+            else{
                 println("Input data is not valid.")
+                return
+            }
+            ints.sort()
+            print("Sorted data: ")
+            for(int in ints)
+                print("$int, ")
+            println()
         }
         else if (type.contains('3') || type.contains("char")) {
             val input = stringInput("character")
-            if(isValidInput("character", input)){
-                val chars = stringToCharMutableList(input)
-                print("Input data: ")
-                for(char in chars)
-                    print("$char, ")
-                println("\nDo character sort.")
-            }
-            else
+            val chars: MutableList<Char>
+            if(isValidInput("character", input))
+                chars = stringToCharMutableList(input)
+            else{
                 println("Input data is not valid.")
+                return
+            }
+            chars.sort()
+            print("Sorted data: ")
+            for(char in chars)
+                print("$char, ")
+            println()
         }
         else if(type.contains('4') || type.contains("str")) {
             val input = stringInput("string")
-            if(isValidInput("string", input)){
-                val strings = stringToStringMutableList(input)
-                print("Input data: ")
-                for(string in strings)
-                    print(string + ", ")
-                println("\nDo string sort.")
-            }
-            else
+            val strings: MutableList<String>
+            if(isValidInput("string", input))
+                strings = stringToStringMutableList(input)
+            else{
                 println("Input data is not valid.")
+                return
+            }
+            strings.sort()
+            print("Sorted data: ")
+            for(string in strings)
+                print("$string, ")
+            println()
         }
         else
             println("Invalid input.")
