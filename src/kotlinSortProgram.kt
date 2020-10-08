@@ -2,12 +2,20 @@
 import java.util.Scanner
 fun main(){
     println("<------------ Sort Program ----------->")
-    println("Ascending sort types available:")
+    println("Data types available:")
     println("1. floating point,   3. character,")
     println("2. integer,          4. string")
-    print("Pick type: ")
+    print("Pick data type: ")
     val type = readLine()
     if (type != null) {
+        println("Sort types available:")
+        println("1. ascending, 2. descending")
+        print("Pick sort type: ")
+        var isAscending = true
+        val ascString = readLine()
+        if(ascString != null)
+            if(ascString.contains('2') || ascString.contains("des"))
+                isAscending = false
         if(type.contains('1') || type.contains("float")){
             val input = stringInput("floating point")
             val floats: MutableList<Float>
@@ -17,7 +25,10 @@ fun main(){
                 println("Input data is not valid.")
                 return
             }
-            floats.sort()
+            if(isAscending)
+                floats.sort()
+            else
+                floats.sortDescending()
             print("Sorted data: ")
             for(float in floats)
                 print("$float, ")
@@ -32,7 +43,10 @@ fun main(){
                 println("Input data is not valid.")
                 return
             }
-            ints.sort()
+            if(isAscending)
+                ints.sort()
+            else
+                ints.sortDescending()
             print("Sorted data: ")
             for(int in ints)
                 print("$int, ")
@@ -47,7 +61,10 @@ fun main(){
                 println("Input data is not valid.")
                 return
             }
-            chars.sort()
+            if(isAscending)
+                chars.sort()
+            else
+                chars.sortDescending()
             print("Sorted data: ")
             for(char in chars)
                 print("$char, ")
@@ -62,7 +79,10 @@ fun main(){
                 println("Input data is not valid.")
                 return
             }
-            strings.sort()
+            if(isAscending)
+                strings.sort()
+            else
+                strings.sortDescending()
             print("Sorted data: ")
             for(string in strings)
                 print("$string, ")
